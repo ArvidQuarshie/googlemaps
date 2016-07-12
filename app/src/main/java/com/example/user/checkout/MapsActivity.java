@@ -31,12 +31,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,ChildEventListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,ChildEventListener,
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnInfoWindowCloseListener,GoogleMap.OnInfoWindowLongClickListener {
     private Firebase mFirebase;
     private static final String FIREBASE_URL = "https://checkout-5b106.firebaseio.com/";
     private static final String FIREBASE_ROOT_NODE = "checkouts";
@@ -202,6 +204,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                        }
                     );
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this,"Click Info Window",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInfoWindowClose(Marker marker) {
+        Toast.makeText(this,"Close Info Window",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInfoWindowLongClick(Marker marker) {
+
+        Toast.makeText(this,"Info Window Long Click",Toast.LENGTH_SHORT).show();
     }
 }
 
